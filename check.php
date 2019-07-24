@@ -6,9 +6,16 @@ $servername = "localhost";
 $username = "root";
 $password = "";
 $dbname = "injuryDB";
-$table = "User Record";
+$table = "UserRecord";
 
-echo $_POST['first'];
+$first = $_POST['first'];
+$last = $_POST['last'];
+$username = $_POST['username'];
+$email = $_POST['email'];
+$dob = $_POST['dob'];
+$password = $_POST['password'];
+$confirm = $_POST['confirm'];
+$action = $_POST['action'];
 // Create connection.
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -21,6 +28,7 @@ function query($sql) {
   // Query SQL.
   global $conn;
   $result = $conn->query($sql);
+  $array = [];
 
   if (!$result) {
     die("Query failed: " . $conn->error);
@@ -36,14 +44,29 @@ function query($sql) {
   // Return the array.
   return $array;
 }
+if ($action == 'Sign Up') {
+  if (strlen($password) < 8) {
+    die ('Password does not meet criteria. Needs to contain 8 letters including one number, one lowercase letter and atleast one uppercase letter');
+  } elseif ($password cont) {
+    ;
+  } else () {
+    ;
+  }
 
-// $students = query("SELECT * FROM $table");
+  $usernames = query("SELECT * FROM $table WHERE username='$username'");
+  if ($usernames) {
+    die ('Username already exists');
+  }
+
+
+  //Send user information to database
+    $insert = INSERT INTO $table ('txtFamilyName', 'txtGivenName', 'txt')
 ?>
 
 
 <html>
     <head>
-        <title>YOUR TITLE GOES HERE</title>
+        <title>Ouch</title>
 
         <style type="text/css">
 
