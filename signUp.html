@@ -11,20 +11,19 @@
     <body>
       <h1>Create account</h1>
 
-      First Name:<input type='text'><br>
-      Family Name<input type='text'><br>
-      Username:<input type='text'><br>
-      Email (optional):<input type='text'><br>
-      Date of Birth (optional):<input type='text'><br>
-      Password:<input type='text'><br>
-      Confirm Password:<input type='text'><br><br><br>
+      <form action="check.php" method='post'>
+        First Name:<input type='text' name='first'><br>
+        Family Name<input type='text' name='last'><br>
+        Username:<input type='text' name='username'><br>
+        Email (optional):<input type='text' name='email'><br>
+        Date of Birth (optional):<input type='text' name='dob'><br>
+        Password:<input type='text' name='password'><br>
+        Confirm Password:<input type='text' name='confirm'><br><br><br>
+        <input type='submit' value='Sign Up'>
+      </form>
 
-      <a href='mainInter.html'><button type="submit" onclick="signUp()">SIGN UP</button></a>
 
         <script>
-          function signUp() {
-
-          }
         </script>
     </body>
 </html>
