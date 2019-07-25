@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 
 <?php
+//Start the session
+session_start();
+
+/*Store some session data
+$_SESSION[""] = "";
+$_SESSION[""] = "";*/
+
 // Setup variables.
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "injuryDB";
-$table = "UserRecord";
+$DBservername = "localhost";
+$DBusername = "root";
+$DBpassword = "";
+$DBname = "injuryDB";
+$DBtable = "UserRecord";
 
 $first = $_POST['first'];
 $last = $_POST['last'];
@@ -16,8 +23,9 @@ $dob = $_POST['dob'];
 $password = $_POST['password'];
 $confirm = $_POST['confirm'];
 $action = $_POST['action'];
+
 // Create connection.
-$conn = new mysqli($servername, $username, $password, $dbname);
+$conn = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
 
 // Check connection.
 if ($conn->connect_error) {
@@ -46,21 +54,47 @@ function query($sql) {
 }
 if ($action == 'Sign Up') {
   if (strlen($password) < 8) {
-    die ('Password does not meet criteria. Needs to contain 8 letters including one number, one lowercase letter and atleast one uppercase letter');
-  } elseif ($password cont) {
-    ;
-  } else () {
-    ;
-  }
+    die ('Password does not meet criteria. Needs to contain 8 letters including atleast one number, one lowercase letter and one uppercase letter');
+  } if( !preg_match("#[0-9]+#", $password ) ) {
+    die ("Password must include at least one number!");
+    } if( !preg_match("#[a-z]+#", $password ) ) {
+    die ('Password must include at least one letter!');
+    } if( !preg_match("#[A-Z]+#", $password ) ) {
+    die ('Password must include at least one CAPS!');
+    } if ($password != $confirm) {
+      die ('Passwords did not match!');
+    }
 
-  $usernames = query("SELECT * FROM $table WHERE username='$username'");
-  if ($usernames) {
+
+  $usernames = query("SELECT * FROM $DBtable WHERE txtUsername='$username'");
+  if ($usernames == 1) {
     die ('Username already exists');
   }
 
+  /*if ($dob < ) {
+   ;
+  }
+
+  if ($email )*/
+
 
   //Send user information to database
-    $insert = INSERT INTO $table ('txtFamilyName', 'txtGivenName', 'txt')
+    $insertSQL = <<<EOT
+
+    INSERT INTO $DBtable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
+    VALUES (
+    $first,
+    $last,
+    $username,
+    $email,
+    $dob,
+    $password,
+    $confirm
+    );
+    EOT;
+
+  echo $insertSQL;
+}
 ?>
 
 
