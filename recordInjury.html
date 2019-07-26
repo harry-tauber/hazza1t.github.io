@@ -10,10 +10,13 @@
 
     <body>
       <h1>Record your injury</h1>
-      Injury Type: <input type='text' id='injType'><br><br>
-      Cause of Injury: <input type='text' id='injCause'><br><br>
-      Severity of Injury: <input type='text' id='injSever'><br><br>
-      Symptoms: <input type='text' id='injSymptom'><br><br>
+
+      <form action="record.php" method="post">
+        Injury Type: <input type='text' name='type'><br><br>
+        Cause of Injury: <input type='text' name='cause'><br><br>
+        Severity of Injury: <input type='text' name='severity'><br><br>
+        Symptoms: <input type='text' name='symptoms'><br><br>
+      </form>
 
       <button type='submit' onclick="submit()">Submit</button>
 
