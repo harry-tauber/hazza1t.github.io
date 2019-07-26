@@ -1,34 +1,29 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Ouch!</title>
+        <title>Ouch</title>
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit=no>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style type="text/css">
-          .button {
-            background-color: aqua;
-            border: none;
-          }
+
         </style>
     </head>
 
     <body>
-      <h1 id='header'>Ouch!</h1>
+
+      <table>
 
 
-      <a href="login.php"><button class="button">LOGIN</button></a><br><br>
-      <a href="signUp.php"><button class='button'>SIGN UP</button></a><br>
+      </table>
+        <script>
 
-
-
-        <script src='vendor/jquery-3.4.1.min.js'></script>
-
-      <script>
-
-      </script>
-
+        </script>
     </body>
 </html>

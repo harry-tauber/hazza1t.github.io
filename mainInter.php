@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -8,27 +12,17 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style type="text/css">
-          .button {
-            background-color: aqua;
-            border: none;
-          }
+
         </style>
     </head>
 
     <body>
-      <h1 id='header'>Ouch!</h1>
 
 
-      <a href="login.php"><button class="button">LOGIN</button></a><br><br>
-      <a href="signUp.php"><button class='button'>SIGN UP</button></a><br>
+      <a href="recordInjury.html"><button>Add Injury</button></a><br>
+      <a href="viewInjury.html"><button>Injury Record</button></a>
+        <script>
 
-
-
-        <script src='vendor/jquery-3.4.1.min.js'></script>
-
-      <script>
-
-      </script>
-
+        </script>
     </body>
 </html>

@@ -13,6 +13,14 @@
   $severity = $_POST['severity'];
   $symptoms = $_POST['symptoms'];
 
+  // Create connection.
+  $conn = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
+
+  // Check connection.
+  if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+  }
+
   function query($sql) {
   // Query SQL.
   global $conn;
@@ -33,6 +41,10 @@
   // Return the array.
   return $array;
   }
+
+$insertSQL = query("INSERT INTO $DBtable ('txtInjuryType', 'txtInjuryCause', 'txtInjurySymptoms', 'txtInjurySeverity')           VALUES ('$type', '$cause', '$severity', '$symptoms')");
+
+echo $insertSQL;
 
 ?>
 

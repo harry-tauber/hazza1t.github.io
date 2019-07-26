@@ -5,7 +5,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "injuryDB";
+$dbname = "";
 $table = "students";
 
 // Create connection.
