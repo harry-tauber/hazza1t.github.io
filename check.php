@@ -3,50 +3,13 @@
 <!DOCTYPE html>
 <?php
 session_start();
-?>
-<?php
 
 
+require_once 'common.php';
 
+function doSignUp() {
 
-// Setup variables.
-$DBservername = "localhost";
-$DBusername = "root";
-$DBpassword = "";
-$DBname = "injuryDB";
-$DBtable = "UserRecord";
-
-$action = $_POST['action'];
-
-// Create connection.
-$conn = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
-
-// Check connection.
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-function query($sql) {
-  // Query SQL.
-  global $conn;
-  $result = $conn->query($sql);
-  $array = [];
-
-  if (!$result) {
-    die("Query failed: " . $conn->error);
-  }
-
-  // Parse the results.
-  if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-      $array[] = $row;
-    }
-  }
-
-  // Return the array.
-  return $array;
-}
-if ($action == 'Sign Up') {
+  global $DBUserTable;
 
   $first = $_POST['first'];
   $last = $_POST['last'];
@@ -70,7 +33,7 @@ if ($action == 'Sign Up') {
     }
 
 
-  $usernames = query("SELECT * FROM $DBtable WHERE txtUsername='$username'");
+  $usernames = query("SELECT * FROM $DBUserTable WHERE txtUsername='$username'");
   if ($usernames) {
     die ('Username already exists');
   }
@@ -85,22 +48,19 @@ if ($action == 'Sign Up') {
     }
 
 
-
   //Send user information to database
-    query("INSERT INTO $DBtable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
+    query("INSERT INTO $DBUserTable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
     VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$confirm')");
-
-
-header("Location: mainInter.php");
-
 }
 
-if ($action == 'Login') {
+function doLogin() {
+
+  global $DBUserTable;
 
   $user = $_POST['user'];
   $pass = $_POST['pass'];
 
- $userData = query("SELECT * FROM $DBtable WHERE txtUsername='$user'");
+ $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$user'");
   if (!$userData) {
     die ('Username does not exist. Please create account');
   }
@@ -113,9 +73,25 @@ if ($action == 'Login') {
 
   //Store some session data
 $_SESSION["username"] = $user;
-$_SESSION["password"] = $pass;
+//$_SESSION["password"] = $pass;
 }
-header("Location: mainInter.php");
+
+function showMainPage() {
+  header("Location: mainInter.php");
+}
+
+$action = $_POST['action'];
+
+switch ($action) {
+  case 'Login':
+      doLogin();
+      showMainPage();
+      break;
+  case 'Sign Up':
+      doSignUp();
+      showMainPage();
+      break;
+}
 
 ?>
 
