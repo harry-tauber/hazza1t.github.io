@@ -31,9 +31,7 @@ session_start();
 
 
         <script>
-          function submit() {
 
-          }
         </script>
     </body>
 </html>

@@ -42,7 +42,8 @@
   return $array;
   }
 
-$insertSQL = query("INSERT INTO $DBtable ('txtInjuryType', 'txtInjuryCause', 'txtInjurySymptoms', 'txtInjurySeverity')           VALUES ('$type', '$cause', '$severity', '$symptoms')");
+$insertSQL = query("INSERT INTO $DBtable (txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
+VALUES ('$type', '$cause', '$severity', '$symptoms')");
 
 echo $insertSQL;
 

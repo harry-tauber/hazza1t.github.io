@@ -18,17 +18,7 @@ $DBpassword = "";
 $DBname = "injuryDB";
 $DBtable = "UserRecord";
 
-$first = $_POST['first'];
-$last = $_POST['last'];
-$username = $_POST['username'];
-$email = $_POST['email'];
-$dob = $_POST['dob'];
-$password = $_POST['password'];
-$confirm = $_POST['confirm'];
 $action = $_POST['action'];
-
-//$logUser = $_POST['user'];
-//$logPass = $_POST['pass'];
 
 // Create connection.
 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
@@ -59,6 +49,16 @@ function query($sql) {
   return $array;
 }
 if ($action == 'Sign Up') {
+
+  $first = $_POST['first'];
+  $last = $_POST['last'];
+  $username = $_POST['username'];
+  $email = $_POST['email'];
+  $dob = $_POST['dob'];
+  $password = $_POST['password'];
+  $confirm = $_POST['confirm'];
+
+
   if (strlen($password) < 8) {
     die ('Password does not meet criteria. Needs to contain 8 letters including atleast one number, one lowercase letter and one uppercase letter');
   } if( !preg_match("#[0-9]+#", $password ) ) {
@@ -73,36 +73,46 @@ if ($action == 'Sign Up') {
 
 
   $usernames = query("SELECT * FROM $DBtable WHERE txtUsername='$username'");
-  if ($usernames == 1) {
+  if ($usernames) {
     die ('Username already exists');
   }
 
-  /*if ($dob < 1900-01-01) {
+
+  if ($dob < 1900-01-01) {
    die ('Please enter a valid age');
   }
 
-  if ($email )*/
+  if( !preg_match("#['@']+#", $email ) ) {
+    die ('Invalid Email!');
+    }
+
 
 
   //Send user information to database
-    $insertSQL = "query(INSERT INTO $DBtable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
-    VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$confirm'))";
+    query("INSERT INTO $DBtable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
+    VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$confirm')");
 
-  echo $insertSQL;
+
 
 
 }
 
-/*if ($action == 'Login') {
-  $usernames = query("SELECT * FROM $DBtable WHERE txtUsername='$username'");
-  if ($usernames == 0) {
+if ($action == 'Login') {
+
+  $user = $_POST['user'];
+  $pass = $_POST['pass'];
+
+ $userData = query("SELECT * FROM $DBtable WHERE txtUsername='$user'");
+  if (!$userData) {
     die ('Username does not exist. Please create account');
   }
-  if ($usernames == 1) {
-
+  elseif($userData[0]["txtPassword"] == $pass){
+      echo "Congrats, you're in!";
+}
+  else {
+    die ('Wrong password!');
   }
-}*/
-
+}
 ?>
 
 
@@ -120,7 +130,6 @@ if ($action == 'Sign Up') {
     </head>
 
     <body>
-
 
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
