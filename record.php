@@ -1,3 +1,17 @@
+<?php
+  session_start();
+  $seshUser = $_SESSION["username"];
+  // Get some session data.
+  echo $seshUser;
+  // Update some session data.
+  /*$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
+  // Remove some session data.
+  if (isset($_SESSION["password"])) {
+  unset($_SESSION["password"]);
+  }*/
+
+?>
+
 <!DOCTYPE html>
 
 <?php
@@ -41,11 +55,12 @@
   // Return the array.
   return $array;
   }
+$seshUser = $_SESSION["username"];
 
-$insertSQL = query("INSERT INTO $DBtable (txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
-VALUES ('$type', '$cause', '$severity', '$symptoms')");
+query("INSERT INTO $DBtable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
+VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms')");
 
-echo $insertSQL;
+
 
 ?>
 

@@ -1,15 +1,13 @@
+
+
+<!DOCTYPE html>
 <?php
 session_start();
 ?>
-
-<!DOCTYPE html>
-
 <?php
 
 
-/*Store some session data
-$_SESSION[""] = "";
-$_SESSION[""] = "";*/
+
 
 // Setup variables.
 $DBservername = "localhost";
@@ -93,7 +91,7 @@ if ($action == 'Sign Up') {
     VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$confirm')");
 
 
-
+header("Location: mainInter.php");
 
 }
 
@@ -112,7 +110,13 @@ if ($action == 'Login') {
   else {
     die ('Wrong password!');
   }
+
+  //Store some session data
+$_SESSION["username"] = $user;
+$_SESSION["password"] = $pass;
 }
+header("Location: mainInter.php");
+
 ?>
 
 

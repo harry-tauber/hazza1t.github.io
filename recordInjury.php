@@ -1,5 +1,13 @@
 <?php
 session_start();
+      // Get some session data.
+    echo $_SESSION["username"];
+    // Update some session data.
+    //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
+    // Remove some session data.
+    if (isset($_SESSION["password"])) {
+    unset($_SESSION["password"]);
+    }
 ?>
 
 <!DOCTYPE html>
@@ -25,7 +33,10 @@ session_start();
         Severity of Injury: <input type='text' name='severity'><br><br>
         Symptoms: <input type='text' name='symptoms'><br><br>
         <input name='action' type='submit' value='Record'>
+        <a href="logout.php"><button>Logout</button></a>
       </form>
+
+
 
 
 

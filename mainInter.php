@@ -1,5 +1,15 @@
 <?php
 session_start();
+
+
+// Get some session data.
+echo $_SESSION["username"];
+// Update some session data.
+//$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
+// Remove some session data.
+if (isset($_SESSION["password"])) {
+unset($_SESSION["password"]);
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,8 +29,9 @@ session_start();
     <body>
 
 
-      <a href="recordInjury.html"><button>Add Injury</button></a><br>
-      <a href="viewInjury.html"><button>Injury Record</button></a>
+      <a href="recordInjury.php"><button>Add Injury</button></a><br>
+      <a href="viewInjury.php"><button>Injury Record</button></a>
+      <a href="logout.php"><button>Logout</button></a>
         <script>
 
         </script>

@@ -1,4 +1,10 @@
+
+
 <!DOCTYPE html>
+<?php
+// Start the session
+session_start();
+?>
 <html>
     <head>
         <title>Login to Ouch!</title>
