@@ -35,9 +35,11 @@ require 'common.php';
 
       <?php
 
+
+
       $rows = query("SELECT * FROM $DBInjuryTable WHERE txtUsername='$seshUser'");
 
-      $table = '<table>';
+      $table = '<table class="table">';
       $table .= '<tr><th>Type</th><th>Cause</th><th>Symptoms</th><th>Severity</th></tr>';
       foreach ($rows as &$row) {
 
@@ -49,9 +51,19 @@ require 'common.php';
                  '</tr>';
       }
       $table .=  '</table>';
+
       echo $table;
 
+      "SELECT "
+
+     /* echo '<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Injuries</button>
+        <div id="demo" class="collapse">
+          $table
+        </div>'*/
+
+
       ?>
+
 
       <a href="logout.php"><button>Logout</button></a>
         <script>

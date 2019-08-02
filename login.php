@@ -17,7 +17,7 @@ session_start();
 
         </style>
     </head>
-  <h1>Login</h1>
+  <h1 class="page-header">Login</h1>
 
   <form action='check.php' method="post">
     Username:<br><input type='text' name='user'><br><br>

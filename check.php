@@ -18,39 +18,50 @@ function doSignUp() {
   $dob = $_POST['dob'];
   $password = $_POST['password'];
   $confirm = $_POST['confirm'];
+  $error = 0;
 
 
   if (strlen($password) < 8) {
     die ('Password does not meet criteria. Needs to contain 8 letters including atleast one number, one lowercase letter and one uppercase letter');
   } if( !preg_match("#[0-9]+#", $password ) ) {
-    die ("Password must include at least one number!");
+    echo ("Password must include at least one number!");
+    $error = 1;
     } if( !preg_match("#[a-z]+#", $password ) ) {
-    die ('Password must include at least one lowercase letter!');
+    echo ('Password must include at least one lowercase letter!');
+    $error = 1;
     } if( !preg_match("#[A-Z]+#", $password ) ) {
-    die ('Password must include at least one CAPS!');
+    echo ('Password must include at least one CAPS!');
+    $error = 1;
     } if ($password != $confirm) {
-      die ('Passwords did not match!');
+      echo ('Passwords did not match');
+    $error = 1;
     }
 
 
   $usernames = query("SELECT * FROM $DBUserTable WHERE txtUsername='$username'");
   if ($usernames) {
-    die ('Username already exists');
+    echo ('Username already exists');
+    $error = 1;
   }
 
 
   if ($dob < 1900-01-01) {
-   die ('Please enter a valid age');
+   echo ('Please enter a valid age');
+    $error = 1;
   }
 
   if( !preg_match("#['@']+#", $email ) ) {
-    die ('Invalid Email!');
+    echo ('Invalid Email!');
+    $error = 1;
     }
 
 
   //Send user information to database
-    query("INSERT INTO $DBUserTable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
+    if ($error == 0) {
+      query("INSERT INTO $DBUserTable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, txtConfirm)
     VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$confirm')");
+    }
+    else die();
 }
 
 function doLogin() {
@@ -59,21 +70,25 @@ function doLogin() {
 
   $user = $_POST['user'];
   $pass = $_POST['pass'];
+  $error = 0;
 
  $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$user'");
   if (!$userData) {
-    die ('Username does not exist. Please create account');
+    echo ('Username does not exist. Please create account');
+    $error = 1;
   }
   elseif($userData[0]["txtPassword"] == $pass){
       echo "Congrats, you're in!";
 }
   else {
-    die ('Wrong password!');
+    echo ('Wrong password!');
+    $error = 1;
   }
 
   //Store some session data
-$_SESSION["username"] = $user;
-//$_SESSION["password"] = $pass;
+if ($error == 0) {
+  $_SESSION["username"] = $user;
+} else die();
 }
 
 function showMainPage() {

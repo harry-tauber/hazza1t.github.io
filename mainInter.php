@@ -1,9 +1,13 @@
 <?php
 session_start();
+if (!isset($_SESSION["username"])) {
+  header ("Location: login.php");
+}
 
 
 // Get some session data.
-echo $_SESSION["username"];
+$seshUser = $_SESSION["username"];
+echo $seshUser;
 // Update some session data.
 //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
 // Remove some session data.
@@ -28,9 +32,11 @@ unset($_SESSION["password"]);
 
     <body>
 
-
-      <a href="recordInjury.php"><button>Add Injury</button></a><br>
-      <a href="viewInjury.php"><button>Injury Record</button></a>
+      <br>
+      <div>
+        <a href="recordInjury.php"><button class="btn btn-primary btn-lg btn-block">Add Injury</button></a><br>
+        <a href="viewInjury.php"><button class="btn btn-primary btn-lg btn-block">Injury Record</button></a><br>
+      </div>
       <a href="logout.php"><button>Logout</button></a>
         <script>
 
