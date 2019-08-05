@@ -2,16 +2,19 @@
 
 session_start();
 require 'common.php';
+if (!isset($_SESSION["username"])) {
+  header ("Location: login.php");
+}
 
 // Get some session data.
     $seshUser = $_SESSION["username"];
     echo $seshUser;
-    // Update some session data.
+    /* Update some session data.
     //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
     // Remove some session data.
     if (isset($_SESSION["password"])) {
     unset($_SESSION["password"]);
-    }
+    }*/
 ?>
 
 <!DOCTYPE html>

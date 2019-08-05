@@ -3,6 +3,7 @@
   require_once 'common.php';
 
 
+
   $seshUser = $_SESSION["username"];
   // Get some session data.
   echo $seshUser;

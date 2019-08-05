@@ -78,7 +78,7 @@ function doLogin() {
     $error = 1;
   }
   elseif($userData[0]["txtPassword"] == $pass){
-      echo "Congrats, you're in!";
+      echo ("Congrats, you're in!");
 }
   else {
     echo ('Wrong password!');

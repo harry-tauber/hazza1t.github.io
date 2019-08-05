@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (!isset($_SESSION["username"])) {
+  header ("Location: login.php");
+}
       // Get some session data.
     echo $_SESSION["username"];
     /* Update some session data.
