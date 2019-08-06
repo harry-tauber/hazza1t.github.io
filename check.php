@@ -22,7 +22,8 @@ function doSignUp() {
 
 
   if (strlen($password) < 8) {
-    die ('Password does not meet criteria. Needs to contain 8 letters including atleast one number, one lowercase letter and one uppercase letter');
+    echo ('Password needs to contain atleast 8 characters');
+    $error = 1;
   } if( !preg_match("#[0-9]+#", $password ) ) {
     echo ("Password must include at least one number!");
     $error = 1;

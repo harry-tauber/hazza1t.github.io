@@ -16,8 +16,11 @@ session_start();
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
       <style type="text/css" >
+        #pword {
+          font-size: 12px;
+        }
 
-        </style>
+      </style>
     </head>
 
     <body>
@@ -30,7 +33,8 @@ session_start();
         Email (optional):<input type='text' name='email'><br><br>
         Date of Birth (optional):<input type='date' name='dob'><br><br>
         Password:<input type='password' name='password'><br><br>
-        Confirm Password:<input type='password' name='confirm'><br><br><br>
+        Confirm Password:<input type='password' name='confirm'><br>
+        <p id='pword'>Password needs to contain 8 letters including atleast one number,<br> one lowercase letter and one uppercase letter</p><br>
         <input name='action' type='submit' value='Sign Up'>
       </form>
 
