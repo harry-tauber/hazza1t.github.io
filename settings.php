@@ -7,7 +7,7 @@ if (!isset($_SESSION["username"])) {
 
 // Get some session data.
 $seshUser = $_SESSION["username"];
-echo $seshUser;
+echo ('Username: ' . $seshUser);
 
 ?>
 
@@ -75,7 +75,7 @@ echo $seshUser;
 
           if ($error == 0) {
             update("UPDATE $DBUserTable SET txtPassword='$newPass' WHERE txtUsername='$seshUser'");
-            echo ('Congrats, you have changed your password');
+            echo ('Congratulations, you have changed your password');
           } else die();
      }
 
@@ -86,7 +86,6 @@ echo $seshUser;
         doChange();
         break;
         }
-
 
       ?>
 

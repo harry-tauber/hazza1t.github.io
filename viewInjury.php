@@ -8,7 +8,7 @@ if (!isset($_SESSION["username"])) {
 
 // Get some session data.
     $seshUser = $_SESSION["username"];
-    echo $seshUser;
+    echo ('Username: ' . $seshUser);
     /* Update some session data.
     //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
     // Remove some session data.

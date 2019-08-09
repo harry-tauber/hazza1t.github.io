@@ -4,7 +4,8 @@ if (!isset($_SESSION["username"])) {
   header ("Location: login.php");
 }
       // Get some session data.
-    echo $_SESSION["username"];
+    $seshUser = $_SESSION["username"];
+    echo ('Username: ' . $seshUser)
     /* Update some session data.
     //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
     // Remove some session data.
