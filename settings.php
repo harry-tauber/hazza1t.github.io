@@ -79,6 +79,7 @@ echo ('Username: ' . $seshUser);
           } else die();
      }
 
+       if (isset($_POST['action'])) {
       $action = $_POST['action'];
 
       switch ($action) {
@@ -86,6 +87,7 @@ echo ('Username: ' . $seshUser);
         doChange();
         break;
         }
+       }
 
       ?>
 

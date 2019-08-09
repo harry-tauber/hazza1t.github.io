@@ -47,7 +47,7 @@ require 'common.php';
             echo ("Congrats, you're in!");
       }
         else {
-          echo ('Wrong password!');
+          echo ('Wrong password! Must con');
           $error = 1;
         }
 

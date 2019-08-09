@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>QuickSort</title>
+
+        <style type="text/css">
+
+        </style>
+    </head>
+
+    <body>
+
+        <script>
+          /*algorithm quicksort(A, lo, hi) is
+                     if lo < hi then
+                  p := partition(A, lo, hi)
+                  quicksort(A, lo, p - 1)
+                  quicksort(A, p + 1, hi)
+
+          algorithm partition(A, lo, hi) is
+              pivot := A[hi]
+              i := lo
+              for j := lo to hi - 1 do
+                  if A[j] < pivot then
+                      swap A[i] with A[j]
+                      i := i + 1
+              swap A[i] with A[hi]
+              return i*/
+
+          function quicksort(A, lo, hi) {
+            if (lo == undefined) {
+                lo = 0;
+                }
+            if (hi == undefined) {
+              hi = A.length-1;
+            }
+            if (lo < hi) {
+              var p = partition(A, lo, hi);
+              quicksort(A, lo, p - 1);
+              quicksort(A, p + 1, hi);
+            }
+            return A;
+          }
+
+          function partition(A, lo, hi) {
+            var pivot = A[hi];
+            var i = lo;
+            for (var j = lo; j < hi; j++) {
+              if (A[j] < pivot) {
+                //swap A[i] with A[j]
+                var temp = A[i];
+                  A[i] = A[j];
+                  A[j] = temp;
+                i = i + 1;
+              }
+            }
+            //swap A[i] with A[hi]
+              var temp = A[i];
+                  A[i] = A[hi];
+                  A[hi] = temp;
+            return i;
+          }
+
+
+
+
+
+
+        </script>
+    </body>
+</html>

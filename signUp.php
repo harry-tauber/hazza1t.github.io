@@ -110,6 +110,7 @@ require 'common.php';
         header("Location: mainInter.php");
       }
 
+       if (isset($_POST['action'])) {
      $action = $_POST['action'];
 
      switch ($action) {
@@ -118,6 +119,7 @@ require 'common.php';
             showMainPage();
             break;
       }
+       }
             ?>
 
 
