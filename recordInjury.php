@@ -1,17 +1,13 @@
 <?php
+//Star the Session
 session_start();
+//Check if session username exists, if not, sned to login page
 if (!isset($_SESSION["username"])) {
   header ("Location: login.php");
 }
       // Get some session data.
     $seshUser = $_SESSION["username"];
     echo ('Username: ' . $seshUser)
-    /* Update some session data.
-    //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
-    // Remove some session data.
-    if (isset($_SESSION["password"])) {
-    unset($_SESSION["password"]);
-    }*/
 ?>
 
 <!DOCTYPE html>
@@ -31,6 +27,7 @@ if (!isset($_SESSION["username"])) {
     <body>
       <h1>Record your injury</h1>
 
+      <!--Record Injury Form-->
       <form action="record.php" method="post">
         Injury Type: <input type='text' name='type'><br><br>
         Cause of Injury: <input type='text' name='cause'><br><br>

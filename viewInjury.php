@@ -1,7 +1,8 @@
 <?php
-
+//Start the session
 session_start();
 require 'common.php';
+//Check if session username exists, if not, sned to login page
 if (!isset($_SESSION["username"])) {
   header ("Location: login.php");
 }
@@ -9,12 +10,6 @@ if (!isset($_SESSION["username"])) {
 // Get some session data.
     $seshUser = $_SESSION["username"];
     echo ('Username: ' . $seshUser);
-    /* Update some session data.
-    //$_SESSION[“data”] = query(“SELECT * FROM $table2;”);
-    // Remove some session data.
-    if (isset($_SESSION["password"])) {
-    unset($_SESSION["password"]);
-    }*/
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +34,7 @@ if (!isset($_SESSION["username"])) {
       <?php
 
 
-
+      //Create table of injuries
       $rows = query("SELECT * FROM $DBInjuryTable WHERE txtUsername='$seshUser'");
 
       $table = '<table class="table">';
@@ -56,8 +51,6 @@ if (!isset($_SESSION["username"])) {
       $table .=  '</table>';
 
       echo $table;
-
-      "SELECT "
 
      /* echo '<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Injuries</button>
         <div id="demo" class="collapse">

@@ -19,15 +19,25 @@
 <!DOCTYPE html>
 
 <?php
+
+  $error = 0;
+
   $type = $_POST['type'];
   $cause = $_POST['cause'];
   $severity = $_POST['severity'];
   $symptoms = $_POST['symptoms'];
 
-$seshUser = $_SESSION["username"];
+  $seshUser = $_SESSION["username"];
 
+  if (empty($type) || empty($cause)) {
+              echo "You did not fill out the required fields.<br>";
+              $error = 1;
+          }
+
+if ($error == 0) {
 query("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
 VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms')");
+}
 
 header("Location: viewInjury.php");
 
