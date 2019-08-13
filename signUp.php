@@ -31,7 +31,7 @@ require 'common.php';
         First Name:<input type='text' name='first'><br><br>
         Family Name<input type='text' name='last'><br><br>
         Username:<input type='text' name='username'><br><br>
-        Email (Optional):<input type='text' name='email'><br><br>
+        Email:<input type='text' name='email'><br><br>
         Date of Birth (Optional):<input type='date' name='dob'><br><br>
         Password:<input type='password' name='password'><br><br>
         Confirm Password:<input type='password' name='confirm'><br>
@@ -63,12 +63,14 @@ require 'common.php';
 
         $error = 0;
 
-        if (empty($first) || empty($last) || empty($username) || empty($password) || empty($confirm)) {
+
+        if (empty($first) || empty($last) || empty($username) || empty($password) || empty($confirm) || empty($email)) {
               echo "You did not fill out the required fields.<br>";
               $error = 1;
           }
 
         //Password paramters
+        if ($error == 0) {
         if (strlen($password) < 8) {
           echo ("- Password needs to contain atleast 8 characters<br>");
           $error = 1;
@@ -84,26 +86,26 @@ require 'common.php';
           } if ($password != $confirm) {
             echo ('- Passwords did not match<br>');
           $error = 1;
+        }
 
+        }
           //Username cant contain @
-          } if( preg_match("#[@]+#", $username ) ) {
+           if( preg_match("#[@]+#", $username ) ) {
           echo ("- Username can't contain '@'<br>");
           $error = 1;
           }
 
-        if ($error == 0) {
-        $usernames = query("SELECT * FROM $DBUserTable WHERE txtUsername='$username'");
-        if ($usernames) {
-          echo ('- Username already exists<br>');
-          $error = 1;
-        }
-        }
 
-        //Email already exists check
+        //Email and username already exists check
         if ($error == 0) {
         $emails = query("SELECT * FROM $DBUserTable WHERE txtEmail='$email'");
+        $usernames = query("SELECT * FROM $DBUserTable WHERE txtUsername='$username'");
         if ($emails) {
           echo ('- Email already exists<br>');
+          $error = 1;
+        }
+        else if ($usernames) {
+          echo ('- Username already exists<br>');
           $error = 1;
         }
         }
@@ -116,28 +118,19 @@ require 'common.php';
           }
         }
 
+        if (error == 0) {
+          $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+          var_dump($hashed_password);
+
 
         //Send user information to database
           if ($error == 0) {
 
-            $algo = PASSWORD_BCRYPT;
-
-          /*  $options = array(
-              'salt' => mcrypt_create_iv(10, MCRYPT_DEV_URANDOM),
-              'cost' => 10,
-            );*/
-            password_hash( $password, $algo, [ $options ] );
-
-            $password_hash = password_hash($password_string, PASSWORD_BCRYPT, $options);
-
-            $password_string = $password;
-
-            $password_hash = password_hash($password_string, PASSWORD_BCRYPT);
-
-            query("INSERT INTO $DBUserTable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, txtPassword, hash)
-          VALUES ('$first', '$last', '$username', '$email', '$dob', '$password', '$password_hash')");
+            query("INSERT INTO $DBUserTable (txtGivenName, txtFamilyName, txtUsername, txtEmail, dateDOB, hash)
+          VALUES ('$first', '$last', '$username', '$email', '$dob', '$hashed_password')");
           }
           else die();
+      }
       }
 
 

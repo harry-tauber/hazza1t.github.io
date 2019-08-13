@@ -47,6 +47,7 @@ echo ('Username: ' . $seshUser);
         <!--</div>-->
 
          <!--Change email form-->
+      <h3>Change Email</h3>
           <form action='settings.php' method="post">
             Change Email:<br><input type='text' name='email'><br><br>
             <input name='action' type='submit' value='Change Email'>
@@ -65,7 +66,10 @@ echo ('Username: ' . $seshUser);
           $currentPass = $_POST['current'];
           $newPass = $_POST['newPass'];
           $confirmPass = $_POST['confirmPass'];
-          $DBpassword = query("SELECT * FROM $DBUserTable WHERE txtUsername='$seshUser' AND txtPassword='$currentPass'");
+          $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$seshUser'");
+          $hashedPass = $userData[0]["hash"];
+          $verify = password_verify($currentPass, $hashedPass);
+          //$DBpassword = query("SELECT * FROM $DBUserTable WHERE txtUsername='$seshUser' AND hash='$currentPass'");
           $error = 0;
 
           if (empty($currentPass) || empty($newPass) || empty($confirmPass)) {
@@ -89,14 +93,15 @@ echo ('Username: ' . $seshUser);
               } if( !preg_match("#[A-Z]+#", $newPass ) ) {
               echo ('- Password must include at least one CAPS!<br>');
               $error = 1;
-              } if (!$DBpassword) {
+              } if (!$verify) {
               echo ('- Incorrect current password!<br>');
               $error = 1;
             }
         }
 
           if ($error == 0) {
-            update("UPDATE $DBUserTable SET txtPassword='$newPass' WHERE txtUsername='$seshUser'");
+            $hashed_password = password_hash($newPass, PASSWORD_DEFAULT);
+            update("UPDATE $DBUserTable SET hash='$hashed_password' WHERE txtUsername='$seshUser'");
             echo ('Congratulations, you have changed your password');
           } else die();
      }

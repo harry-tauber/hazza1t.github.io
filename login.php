@@ -43,6 +43,7 @@ require 'common.php';
         $pass = $_POST['pass'];
         $error = 0;
 
+
         if (empty($user) || empty($pass)) {
               echo "You did not fill out the required fields.<br>";
               $error = 1;
@@ -50,37 +51,16 @@ require 'common.php';
 
         //Check if username or email exists
         $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$user' OR txtEmail='$user'");
+        $hashedPass = $userData[0]["hash"];
+        $verify = password_verify($pass, $hashedPass);
             if (!$userData) {
               echo ('Username or Email does not exist. Please create account');
               $error = 1;
             }
-
-        /*$hash = $userData[0]["hash"];
-        password_verify( $pass, $hash );
-        echo $hash;*/
-
-        $password_string = $pass;
-        $password_hash = $userData[0]["hash"];
-
-
-        if (password_verify($password_string, $password_hash)) {
-          // Correct password
-        } else {
+          else if ($verify != $pass) {
           $error = 1;
           echo ('Wrong password!');
         }
-
-
-
-
-       /*if ($error == 0) {
-        if($userData[0]["txtPassword"] == $pass) {
-      }
-        else {
-
-          $error = 1;
-        }
-        }*/
 
         //Store some session data
       if ($error == 0) {
