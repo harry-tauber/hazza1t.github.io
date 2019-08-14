@@ -29,7 +29,7 @@ require 'common.php';
       <!--Sign Up form-->
       <form action="signUp.php" method='post'>
         First Name:<input type='text' name='first'><br><br>
-        Family Name<input type='text' name='last'><br><br>
+        Family Name:<input type='text' name='last'><br><br>
         Username:<input type='text' name='username'><br><br>
         Email:<input type='text' name='email'><br><br>
         Date of Birth (Optional):<input type='date' name='dob'><br><br>
@@ -118,9 +118,9 @@ require 'common.php';
           }
         }
 
-        if (error == 0) {
+        if ($error == 0) {
           $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-          var_dump($hashed_password);
+
 
 
         //Send user information to database
@@ -131,6 +131,9 @@ require 'common.php';
           }
           else die();
       }
+        if ($error == 0) {
+        $_SESSION["username"] = $username;
+      } else die();
       }
 
 
@@ -152,7 +155,7 @@ require 'common.php';
       }
 
        if (isset($_POST['action'])) {
-     $action = $_POST['action'];
+        $action = $_POST['action'];
 
      //Switch
      switch ($action) {

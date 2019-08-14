@@ -41,10 +41,10 @@ echo ('Username: ' . $seshUser);
             Current Password:<br><input type='password' name='current'><br><br>
             New Password:<br><input type='password' name='newPass'><br><br>
             Confirm New Password:<br><input type='password' name='confirmPass'><br><br>
-            <input name='action' type='submit' value='Change Password'><br><br><br><br>
+            <input name='action' type='submit' value='Change Password'><br><br>
 
           </form>
-        <!--</div>-->
+
 
          <!--Change email form-->
       <h3>Change Email</h3>
@@ -52,7 +52,9 @@ echo ('Username: ' . $seshUser);
             Change Email:<br><input type='text' name='email'><br><br>
             <input name='action' type='submit' value='Change Email'>
           </form>
-        <!--</div>-->
+
+      <a href='mainInter.php'><button>Home</button></a><br>
+
 
 
 
@@ -139,7 +141,7 @@ echo ('Username: ' . $seshUser);
 
               if ($error == 0) {
                 update("UPDATE $DBUserTable SET txtEmail='$email' WHERE txtUsername='$seshUser'");
-                  echo ("You have change your email to $email");
+                  echo ("You have changed your email to $email");
                 } else die();
               }
 

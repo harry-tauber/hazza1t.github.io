@@ -24,8 +24,9 @@ require 'common.php';
   <form action='login.php' method="post">
     Username or Email:<br><input type='text' name='user'><br><br>
     Password:<br><input type='password' name='pass'><br><br>
-    <input name='action' type='submit' value='Login'>
+    <input name='action' type='submit' value='Login'><br><br>
   </form>
+  <a href='signUp.php'><button>OR Create an account</button></a><br>
 
     <body>
 
@@ -51,23 +52,26 @@ require 'common.php';
 
         //Check if username or email exists
         $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$user' OR txtEmail='$user'");
-        $hashedPass = $userData[0]["hash"];
-        $verify = password_verify($pass, $hashedPass);
             if (!$userData) {
               echo ('Username or Email does not exist. Please create account');
               $error = 1;
             }
-          else if ($verify != $pass) {
-          $error = 1;
-          echo ('Wrong password!');
-        }
 
+          if ($error == 0) {
+
+            $hashedPass = $userData[0]["hash"];
+            $verify = password_verify($pass, $hashedPass);
+
+            if ($verify != $pass) {
+            $error = 1;
+            echo ('Wrong password!');
+          }
+            }
         //Store some session data
-      if ($error == 0) {
-        $_SESSION["username"] = $userData[0]["txtUsername"];
-      } else die();
-      }
-
+        if ($error == 0) {
+          $_SESSION["username"] = $userData[0]["txtUsername"];
+        } else die();
+        }
 
 
         function showMainPage() {
@@ -87,6 +91,7 @@ require 'common.php';
       }
       }
       ?>
+
 
         <script>
 

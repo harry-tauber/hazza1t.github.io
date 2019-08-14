@@ -61,7 +61,9 @@ if (!isset($_SESSION["username"])) {
       ?>
 
 
-      <a href="logout.php"><button>Logout</button></a>
+      <a href="logout.php"><button>Logout</button></a><br><br>
+      <a href='recordInjury.php'><button>Record<br>another<br>injury</button></a><br><br>
+      <a href="mainInter.php"><button>Home</button></a>
         <script>
 
         </script>
