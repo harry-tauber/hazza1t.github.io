@@ -8,7 +8,7 @@ if (!isset($_SESSION["username"])) {
 
 // Get some session data.
 $seshUser = $_SESSION["username"];
-echo ('Username: ' . $seshUser);
+
 
 ?>
 
@@ -23,6 +23,7 @@ echo ('Username: ' . $seshUser);
 
 
         <style type="text/css">
+
            #logout {
              position: absolute;
              top: ;
@@ -33,29 +34,63 @@ echo ('Username: ' . $seshUser);
              top: 50;
              right: 0;
            }
-          #settings {
-            background-image: url('settings.png');
-            background-position: -9px 30spx;
-            background-repeat: no-repeat;
-            background-size: 30px 20px;
-            padding-left: 41px;
-            color: #000;
+        } .navbar-logo {
+            right: 0;
+            left: 0;
+        } #username {
+            color: aqua;
+        }.btn-circle {
+          width: 45px;
+          height: 45px;
+          line-height: 45px;
+          text-align: center;
+          padding: 0;
+          border-radius: 50%;
+        }
+        .btn-circle i {
+          position: relative;
+          top: -1px;
+        } .btn-circle-lg {
+          width: 100px;
+          height: 100px;
+          line-height: 20px;
+          font-size: 1.1rem;
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+        }
+          .btn-circle-xl {
+          width: 120px;
+          height: 120px;
+          line-height: 20px;
+          font-size: 1.1rem;
+        } body {
+          background: #f8f8fd;
+          color: #514B64;
           }
+
         </style>
     </head>
 
     <body>
 
+      <div class="navbar">
+          <img src='images/ouch.png' alt="Test" height="140" width="200" />
+          <?php
+          echo ("<h3>" . 'Username: ' . $seshUser . "</h3>");
+          ?>
+      </div>
+
       <div  class="container container-fluid">
-        <a href=logout.php><button id="logout" type="button" class="btn btn-primary">Logout</button></a><br><br>
+        <a href=logout.php><button id="logout" type="button" class="btn btn-primary">Logout</button></a>
       </div>
 
       <br><br>
       <!--Anchor buttons-->
-      <div>
-        <a href="recordInjury.php"><button class="btn btn-primary btn-lg btn-block">Add Injury</button></a><br>
-        <a href="viewInjury.php"><button class="btn btn-primary btn-lg btn-block">Injury Record</button></a><br>
-        <a href="settings.php"><button class="btn" id="settings">Settings</button></a><br>
+      <div class='text-center'>
+        <a href="recordInjury.php"><button class="btn btn-success btn-circle btn-circle-xl m-1">Add Injury</button></a><br><br>
+        <a href="viewInjury.php"><button class="btn btn-warning btn-circle btn-circle-xl m-1">Injury Record</button></a><br><br>
+        <a href="settings.php"><button id="settings" class="btn btn-secondary btn-circle btn-circle-lg m-1">Settings</button></a><br>
       </div>
         <script>
 

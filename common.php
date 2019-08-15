@@ -2,9 +2,9 @@
 
 // Setup variables.
 $DBservername = "localhost";
-$DBusername = "root";
-$DBpassword = "";
-$DBname = "injuryDB";
+$DBusername = "tau0001";
+$DBpassword = "tau0001";
+$DBname = "ouch";
 $DBUserTable = "UserRecord";
 $DBInjuryTable = "InjuryRecord";
 

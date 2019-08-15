@@ -9,7 +9,6 @@ if (!isset($_SESSION["username"])) {
 
 // Get some session data.
     $seshUser = $_SESSION["username"];
-    echo ('Username: ' . $seshUser);
 ?>
 
 <!DOCTYPE html>
@@ -20,18 +19,84 @@ if (!isset($_SESSION["username"])) {
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1" shrink-to-fit=no>
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-/ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <style type="text/css">
           table {
             border: 1px solid black;
           }
-        </style>
+            #home{
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          background-color: lightblue;
+          color: black;
+          } #logout{
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            padding: 14px 20px;
+            background-color: lightcoral;
+            color: black;
+          } #record {
+          padding: 14px 20px;
+          background-color: lightgreen;
+            color: black;
+        } .btn-circle {
+          width: 45px;
+          height: 45px;
+          line-height: 45px;
+          text-align: center;
+          padding: 0;
+          border-radius: 50%;
+          }
+        .btn-circle i {
+          position: relative;
+          top: -1px;
+        } .btn-circle-lg {
+          width: 100px;
+          height: 100px;
+          line-height: 55px;
+          font-size: 1.1rem;
+        }
+          .btn-circle-xl {
+          width: 120px;
+          height: 120px;
+          line-height: 20px;
+          font-size: 1.1rem;
+          } #user {
+            top: 5px;
+            right: 5px;
+          }
+                </style>
     </head>
 
     <body>
 
+
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-logo">
+      <img src='images/ouch.png' alt="Test" height="120" width="200"/>
       <?php
+        echo ("<h3>" . 'Username: ' . $seshUser . "</h3>");
+      ?>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="mainInter.php">Home</a></li>
+      <li><a href='recordInjury.php'>Record another Injury</a></li>
+      <li><a href="logout.php">Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+      <?php
+
+
 
 
       //Create table of injuries
@@ -52,18 +117,10 @@ if (!isset($_SESSION["username"])) {
 
       echo $table;
 
-     /* echo '<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Injuries</button>
-        <div id="demo" class="collapse">
-          $table
-        </div>'*/
-
 
       ?>
 
 
-      <a href="logout.php"><button>Logout</button></a><br><br>
-      <a href='recordInjury.php'><button>Record<br>another<br>injury</button></a><br><br>
-      <a href="mainInter.php"><button>Home</button></a>
         <script>
 
         </script>

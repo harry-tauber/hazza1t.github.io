@@ -11,17 +11,46 @@
           .button {
             background-color: aqua;
             border: none;
+          } body {
+        background: #f8f8fd;
+        color: #514B64;
+          } .navbar-logo {
+            right: 0;
+            left: 0;
+          } .btn-circle {
+          width: 45px;
+          height: 45px;
+          line-height: 45px;
+          text-align: center;
+          padding: 0;
+          border-radius: 50%;
+        }
+        .btn-circle i {
+          position: relative;
+          top: -1px;
+        } .btn-circle-xl {
+          width: 120px;
+          height: 120px;
+          line-height: 20px;
+          font-size: 1.1rem;
+        } body {
+          background: #f8f8fd;
+          color: #514B64;
+          text-align: center;
+          display: block;
           }
         </style>
     </head>
 
     <body>
-      <!--Header-->
-      <h1 class="jumbotron">Ouch!</h1>
+
+        <img src='images/ouch.png' alt="Test" height="120" width="200"/><br>
+      <h5>Record all your injuries, in one simple place, with the click of a button!</h5>
+
 
       <!--Login and Sign Up buttons-->
-      <a href="login.php"><button class="btn btn-primary">LOGIN</button></a><br><br>
-      <a href="signUp.php"><button class='btn btn-primary'>SIGN UP</button></a><br>
+      <a href="login.php"><button id='login' class="btn btn-success btn-circle btn-circle-xl m-1">LOGIN</button></a><br><br>
+      <a href="signUp.php"><button id='signup' class="btn btn-info btn-circle btn-circle-xl m-1">SIGN UP</button></a><br>
 
 
 

@@ -15,20 +15,69 @@ require 'common.php';
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style type="text/css">
+          input[type=text], input[type=password] {
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+        } input[type=text]:focus, input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
 
-        </style>
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+
+          button:hover {
+          opacity:1;
+          }
+        .signup {
+          padding: 14px 20px;
+          background-color: lightcoral;
+          position: fixed;
+          bottom: 10px;
+          left: 10px;
+
+
+        }
+          .login {
+            padding: 14px 20px;
+          background-color: lightgreen;
+}
+          form {
+            display: inline-block;
+          }
+          body {
+            text-align: center;
+          } #ouch {
+            top: 5px;
+            left: 5px;
+}
+
+     </style>
     </head>
-  <h1 class="page-header">Login</h1>
-
-  <!--Login Form-->
-  <form action='login.php' method="post">
-    Username or Email:<br><input type='text' name='user'><br><br>
-    Password:<br><input type='password' name='pass'><br><br>
-    <input name='action' type='submit' value='Login'><br><br>
-  </form>
-  <a href='signUp.php'><button>OR Create an account</button></a><br>
 
     <body>
+          <img id='ouch' src='images/ouch.png' alt="Test" height="100" width="140"/>
+
+      <h1 class="page-header">Login</h1>
+
+        <!--Login Form-->
+
+        <form action='login.php' method="post">
+
+            <label for='user'>Username or email:</label>
+            <br><input type='text' name='user' id='user' placeholder='Username or email'><br>
+            <label for='pass'>Password:</label>
+            <br><input type='password' name='pass' id='pass' placeholder="Password"><br>
+
+           <input class='login' name='action' type='submit' value='Login'><br><br><br>
+        </form><br>
+
+        <a href='signUp.php'><button class='signup'>OR Create an account</button></a>
 
       <?php
 
@@ -43,6 +92,8 @@ require 'common.php';
         $user = $_POST['user'];
         $pass = $_POST['pass'];
         $error = 0;
+
+
 
 
         if (empty($user) || empty($pass)) {

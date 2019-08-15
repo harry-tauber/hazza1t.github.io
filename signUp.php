@@ -18,27 +18,68 @@ require 'common.php';
         #pword {
           font-size: 12px;
         }
+         form {
+            display: inline-block;
+          }
+          body {
+            text-align: center;
+          }    input[type=text], input[type=password], input[type=email] {
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+        } input[type=text]:focus, input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+
+          button:hover {
+          opacity:1;
+          }
+        #signup {
+          padding: 14px 20px;
+          background-color: lightcoral;
+        } #form {
+          position: sticky;
+        }
 
       </style>
     </head>
 
     <body>
+      <div class="navbar-logo">
+          <img src='images/ouch.png' alt="Test" height="100" width="140" />
+      </div>
 
       <h1>Create account</h1>
 
       <!--Sign Up form-->
-      <form action="signUp.php" method='post'>
-        First Name:<input type='text' name='first'><br><br>
-        Family Name:<input type='text' name='last'><br><br>
-        Username:<input type='text' name='username'><br><br>
-        Email:<input type='text' name='email'><br><br>
-        Date of Birth (Optional):<input type='date' name='dob'><br><br>
-        Password:<input type='password' name='password'><br><br>
-        Confirm Password:<input type='password' name='confirm'><br>
-        <p id='pword'>Password needs to contain 8 letters AND atleast:<br>-One number<br>-One lowercase letter<br>-One uppercase letter</p><br>
-        <input name='action' type='submit' value='Sign Up'><br><br>
-      </form>
+      <form id='form' action="signUp.php" method='post'>
+        <label for='first'>First Name:</label>
+        <input type='text' name='first' id='first' placeholder="First Name">
+        <label for='last'>Surname:</label>
+        <input type='text' name='last' id='last' placeholder="Surname"><br>
+        <label for='user'>Username:</label>
+        <input type='text' name='username' id='user' placeholder="Username">
+        <label for='email'>Email:</label>
+        <input type='email' name='email' id='email' placeholder="Email"><br>
+        <label for='dob'>Date of Birth (Optional):</label>
+        <input type='date' name='dob' id='dob'><br>
+        <label for='password'>Password:</label>
+        <input type='password' name='password' id='password' placeholder="Password">
+        <label for='confirm'>Confirm Password:</label>
+        <input type='password' name='confirm' id='confirm' placeholder="Confirm Password"><br>
+        <p id='pword'>Password needs to contain 8 letters AND atleast:<br>-One number<br>-One lowercase letter<br>-One uppercase letter</p>
+        <input name='action' type='submit' value='Sign Up' id='signup'><br><br><br>
 
+      </form>
+<div></div>
 
 
       <?php
