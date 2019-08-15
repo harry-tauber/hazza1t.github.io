@@ -35,8 +35,8 @@
           }
 
 if ($error == 0) {
-query("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
-VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms')");
+query("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity, dateTime)
+VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', CURDATE())");
 
 
 header("Location: viewInjury.php");

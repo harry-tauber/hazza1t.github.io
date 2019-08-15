@@ -9,7 +9,6 @@ if (!isset($_SESSION["username"])) {
 
 // Get some session data.
 $seshUser = $_SESSION["username"];
-echo ('Username: ' . $seshUser);
 ?>
 
 <!DOCTYPE html>
@@ -23,37 +22,82 @@ echo ('Username: ' . $seshUser);
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <style type="text/css">
+          form {
+            display: inline-block;
+          }
+          body {
+            text-align: center;
+          } html {
+            overflow: hidden;
+          } body {
+  background: #f8f8fd;
+  color: #514B64;
+          } #home {
+            padding: 14px 20px;
+          background-color: oldlace;
+          position: absolute;
+          bottom: 10px;
+          left: 10px;
+          } input[type=password], input[type=email] {
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+        } input[type=email]:focus, input[type=password]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
 
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+
+          button:hover {
+          opacity:1;
+          }
         </style>
     </head>
 
     <body>
-      <h1 class="page-header">Settings</h1><br>
+      <div class="navbar">
+          <img src='images/ouch.png' alt="Test" height="140" width="200" />
+          <?php
+          echo ("<h3>" . 'Username: ' . $seshUser . "</h3>");
+          ?>
+      </div>
+      <div>
+      <h1 class="page-header">Settings</h1>
 
 
         <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Change Password</button><br>
         <div id="demo" class="collapse">-->
 
           <!--Change password form-->
-          <h3>Change Password</h3>
+          <h5>Change Password</h5>
           <form action='settings.php' method="post">
 
-            Current Password:<br><input type='password' name='current'><br><br>
-            New Password:<br><input type='password' name='newPass'><br><br>
-            Confirm New Password:<br><input type='password' name='confirmPass'><br><br>
+            <label for='current'>Current Password:</label>
+            <br><input type='password' name='current' id='current' placeholder="Current Password"><br>
+            <label for='newPass'>New Password:</label>
+            <input type='password' name='newPass' id='newPass' placeholder="New Password">
+            <label for='confirm'>Confirm New Password:</label>
+            <input type='password' name='confirmPass' id='confirm' placeholder="Confirm New Password"><br>
             <input name='action' type='submit' value='Change Password'><br><br>
 
           </form>
 
 
          <!--Change email form-->
-      <h3>Change Email</h3>
+      <h5>Change Email</h5>
           <form action='settings.php' method="post">
-            Change Email:<br><input type='text' name='email'><br><br>
+            <input type='email' name='email' placeholder="Change Email"><br>
             <input name='action' type='submit' value='Change Email'>
           </form>
+        </div>
 
-      <a href='mainInter.php'><button>Home</button></a><br>
+      <a href='mainInter.php'><button id='home'>Home</button></a><br>
 
 
 

@@ -93,7 +93,6 @@ if (!isset($_SESSION["username"])) {
     </ul>
   </div>
 </nav>
-
       <?php
 
 
@@ -103,7 +102,7 @@ if (!isset($_SESSION["username"])) {
       $rows = query("SELECT * FROM $DBInjuryTable WHERE txtUsername='$seshUser'");
 
       $table = '<table class="table">';
-      $table .= '<tr><th>Type</th><th>Cause</th><th>Symptoms</th><th>Severity</th></tr>';
+      $table .= '<tr><th>Type</th><th>Cause</th><th>Symptoms</th><th>Severity</th><th>Notes</th><th>Date</th></tr>';
       foreach ($rows as &$row) {
 
         $table .= '<tr>' .
@@ -111,6 +110,8 @@ if (!isset($_SESSION["username"])) {
                      '<td>' . $row['txtInjuryCause'] . '</td>' .
                      '<td>' . $row['txtInjurySymptoms'] . '</td>' .
                      '<td>' . $row['txtInjurySeverity'] . '</td>' .
+                     '<td>' . $row['txtNotes'] . '</td>' .
+                     '<td>' . $row['dateTime'] . '</td>' .
                  '</tr>';
       }
       $table .=  '</table>';

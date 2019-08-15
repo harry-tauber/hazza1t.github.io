@@ -20,6 +20,25 @@ if (!isset($_SESSION["username"])) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style type="text/css">
+            input[type=text] {
+          padding: 15px;
+          margin: 5px 0 22px 0;
+          display: inline-block;
+          border: none;
+          background: #f1f1f1;
+        } input[type=text]:focus {
+          background-color: #ddd;
+          outline: none;
+        }
+
+        hr {
+          border: 1px solid #f1f1f1;
+          margin-bottom: 25px;
+        }
+
+          button:hover {
+          opacity:1;
+          }
            form {
             display: inline-block;
           }
@@ -34,13 +53,12 @@ if (!isset($_SESSION["username"])) {
           .home {
             padding: 14px 20px;
           background-color: oldlace;
-          } html {
-            overflow: hidden;
-          }    .home{
-            position: absolute;
+          position: absolute;
           bottom: 10px;
           left: 10px;
-          } #logout{
+          } html {
+            overflow: hidden;
+          }  #logout{
             position: absolute;
             bottom: 10px;
             right: 10px;
@@ -56,7 +74,7 @@ if (!isset($_SESSION["username"])) {
 
     <body>
        <div class="navbar">
-          <img src='images/ouch.png' alt="Test" height="120" width="200"/>
+          <img src='images/ouch.png' alt="Test" height="100" width="200"/>
           <?php
           echo ("<h3>" . 'Username: ' . $seshUser . "</h3>");
           ?>
@@ -69,21 +87,22 @@ if (!isset($_SESSION["username"])) {
       <!--Record Injury Form-->
       <form action="recordInjury.php" method="post">
 
-        <label for='type'>Injury Type:</label><br>
-        <input type='text' name='type' id='type' placeholder='Injury Type'><br><br>
-        <label for='cause'>Cause of Injury:</label><br>
-        <input type='text' name='cause' id='cause' placeholder='Cause of Injury'><br><br>
-        <label for='severity'>Severity of Injury: </label><br>
-        <input type='text' name='severity' id='cause' placeholder='Severity of Injury'><br><br>
-        <label for='symptoms'>Symptoms:</label><br>
-        <input type='text' name='symptoms' id='symptoms' placeholder='Symptoms'><br><br>
-        <input name='action' type='submit' value='Record' class='record'><br><br>
-
-
-
+        <label for='type'>Injury Type:</label>
+        <input type='text' name='type' id='type' placeholder='Injury Type'><br>
+        <label for='cause'>Cause of Injury:</label>
+        <input type='text' name='cause' id='cause' placeholder='Cause of Injury'><br>
+        <label for='severity'>Severity of Injury: </label>
+        <input type='text' name='severity' id='cause' placeholder='Severity of Injury'><br>
+        <label for='symptoms'>Symptoms:</label>
+        <input type='text' name='symptoms' id='symptoms' placeholder='Symptoms'><br>
+        <label for='notes'>Any extra notes (optional)</label>
+        <input type='text' name='notes' id='notes' placeholder='Notes'><br>
+        <input name='action' type='submit' value='Record' class='record'>
       </form>
-      <a href="logout.php"><button id='logout'>Logout</button></a><br><br>
-      <a href='mainInter.php'><button class='home'>Home</button></a><br>
+      <div></div>
+
+      <a href="logout.php"><button id='logout'>Logout</button></a>
+      <a href='mainInter.php'><button class='home'>Home</button></a>
 
 
 
@@ -94,21 +113,24 @@ if (!isset($_SESSION["username"])) {
       global $DBInjuryTable;
         $error = 0;
 
+
         $type = $_POST['type'];
         $cause = $_POST['cause'];
         $severity = $_POST['severity'];
         $symptoms = $_POST['symptoms'];
+        $notes = $_POST['notes'];
 
         $seshUser = $_SESSION["username"];
 
-        if (empty($type) || empty($cause)) {
+        if (empty($type) || empty($cause) || empty($severity) || empty($symptoms)) {
                     echo "You did not fill out the required fields.<br>";
                     $error = 1;
                 }
 
       if ($error == 0) {
-      query("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity)
-      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms')");
+
+      query ("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity, txtNotes, dateTime)
+      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', '$notes', DATE_ADD(NOW(), INTERVAL 10 HOUR))");
 
 
       header("Location: viewInjury.php");

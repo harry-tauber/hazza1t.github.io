@@ -102,11 +102,13 @@ require 'common.php';
           }
 
         //Check if username or email exists
+        if ($error == 0) {
         $userData = query("SELECT * FROM $DBUserTable WHERE txtUsername='$user' OR txtEmail='$user'");
             if (!$userData) {
               echo ('Username or Email does not exist. Please create account');
               $error = 1;
             }
+        }
 
           if ($error == 0) {
 

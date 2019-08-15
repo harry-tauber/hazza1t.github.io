@@ -8,6 +8,7 @@ $DBname = "ouch";
 $DBUserTable = "UserRecord";
 $DBInjuryTable = "InjuryRecord";
 
+
 // Create connection.
 $conn = new mysqli($DBservername, $DBusername, $DBpassword, $DBname);
 
