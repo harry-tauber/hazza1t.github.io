@@ -74,9 +74,9 @@ require 'common.php';
         <label for='password'>Password:</label>
         <input type='password' name='password' id='password' placeholder="Password">
         <label for='confirm'>Confirm Password:</label>
-        <input type='password' name='confirm' id='confirm' placeholder="Confirm Password"><br>
-        <p id='pword'>Password needs to contain 8 letters AND atleast:<br>-One number<br>-One lowercase letter<br>-One uppercase letter</p>
-        <input name='action' type='submit' value='Sign Up' id='signup'><br><br><br>
+        <input type='password' name='confirm' id='confirm' placeholder="Confirm Password">
+        <p id='pword'>Password needs to contain 8 letters AND atleast:<br>One number, one lowercase letter, one uppercase letter</p>
+        <input name='action' type='submit' value='Sign Up' id='signup'>
 
       </form>
 <div></div>
@@ -142,11 +142,11 @@ require 'common.php';
         $emails = query("SELECT * FROM $DBUserTable WHERE txtEmail='$email'");
         $usernames = query("SELECT * FROM $DBUserTable WHERE txtUsername='$username'");
         if ($emails) {
-          echo ('- Email already exists<br>');
+          echo ('Email already exists, ');
           $error = 1;
         }
         else if ($usernames) {
-          echo ('- Username already exists<br>');
+          echo ('Username already exists, ');
           $error = 1;
         }
         }
