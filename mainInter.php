@@ -25,49 +25,48 @@ $seshUser = $_SESSION["username"];
         <style type="text/css">
 
            #logout {
-             position: absolute;
-             top: ;
-             right: 0;
-           }
-          #username {
-             position: absolute;
-             top: 50;
-             right: 0;
-           }
-        } .navbar-logo {
-            right: 0;
-            left: 0;
-        } #username {
-            color: aqua;
-        }.btn-circle {
-          width: 45px;
-          height: 45px;
-          line-height: 45px;
-          text-align: center;
-          padding: 0;
-          border-radius: 50%;
-        }
-        .btn-circle i {
-          position: relative;
-          top: -1px;
-        } .btn-circle-lg {
-          width: 100px;
-          height: 100px;
-          line-height: 20px;
-          font-size: 1.1rem;
-          position: fixed;
-          bottom: 10px;
-          left: 10px;
-        }
-          .btn-circle-xl {
-          width: 120px;
-          height: 120px;
-          line-height: 20px;
-          font-size: 1.1rem;
-        } body {
-          background: #f8f8fd;
-          color: #514B64;
+               position: absolute;
+               right: 0;
+             }
+            #username {
+               position: absolute;
+               top: 50;
+               right: 0;
+             }
+           .navbar-logo {
+              right: 0;
+              left: 0;
+          } #username {
+              color: aqua;
+          }.btn-circle {
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            padding: 0;
+            border-radius: 50%;
           }
+          .btn-circle i {
+            position: relative;
+            top: -1px;
+          } .btn-circle-lg {
+            width: 100px;
+            height: 100px;
+            line-height: 20px;
+            font-size: 1.1rem;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+          }
+            .btn-circle-xl {
+            width: 120px;
+            height: 120px;
+            line-height: 20px;
+            font-size: 1.1rem;
+          } body {
+            background: #f8f8fd;
+            color: #514B64;
+            }
 
         </style>
     </head>

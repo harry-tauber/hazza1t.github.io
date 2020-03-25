@@ -15,39 +15,40 @@ require 'common.php';
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
       <style type="text/css" >
-        #pword {
-          font-size: 12px;
-        }
-         form {
-            display: inline-block;
-          }
-          body {
-            text-align: center;
-          }    input[type=text], input[type=password], input[type=email] {
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        } input[type=text]:focus, input[type=password]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
-
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
-        }
-
-          button:hover {
-          opacity:1;
-          }
-        #signup {
-          padding: 14px 20px;
-          background-color: lightcoral;
-        } #form {
-          position: sticky;
-        }
+     #pword {
+         font-size: 12px;
+    }
+     form {
+         display: inline-block;
+    }
+     body {
+         text-align: center;
+    }
+     input[type=text], input[type=password], input[type=email] {
+         padding: 15px;
+         margin: 5px 0 22px 0;
+         display: inline-block;
+         border: none;
+         background: #f1f1f1;
+    }
+     input[type=text]:focus, input[type=password]:focus {
+         background-color: #ddd;
+         outline: none;
+    }
+     hr {
+         border: 1px solid #f1f1f1;
+         margin-bottom: 25px;
+    }
+     button:hover {
+         opacity:1;
+    }
+     #signup {
+         padding: 14px 20px;
+         background-color: lightcoral;
+    }
+     #form {
+         position: sticky;
+    }
 
       </style>
     </head>
@@ -86,8 +87,7 @@ require 'common.php';
 
 
       /**
-       *
-       * @returns
+       *Sign Up function, allows users to create personalised account and sends user info to database
        */
       function doSignUp() {
 
@@ -177,20 +177,9 @@ require 'common.php';
       } else die();
       }
 
-
-      /*function generateRandomString($length = 10) {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = 0; $i < $length; $i++) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        return $randomString;
-    }*/
-
-
-
-
+      /**
+       *Directs user to main interface
+       */
       function showMainPage() {
         header("Location: mainInter.php");
       }
@@ -198,12 +187,11 @@ require 'common.php';
        if (isset($_POST['action'])) {
         $action = $_POST['action'];
 
-     //Switch
+     //Switch statement
      switch ($action) {
         case 'Sign Up':
             doSignUp();
             showMainPage();
-            //generateRandomString();
             break;
       }
        }

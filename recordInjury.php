@@ -20,61 +20,59 @@ if (!isset($_SESSION["username"])) {
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
         <style type="text/css">
-            input[type=text] {
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        } input[type=text]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
-
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
-        }
-
-          button:hover {
-          opacity:1;
-          }
-           form {
-            display: inline-block;
-          }
-          body {
-            text-align: center;
-          }
+            input[type=text], [type=datetime-local]  {
+                 padding: 15px;
+                 margin: -2px 0 22px 0;
+                 display: inline-block;
+                 border: none;
+                 background: #f1f1f1;
+            }
+             input[type=text]:focus, [type=datetime-local]:focus {
+                 background-color: #ddd;
+                 outline: none;
+            }
+             hr {
+                 border: 1px solid #f1f1f1;
+                 margin-bottom: 25px;
+            }
+             button:hover {
+                 opacity:1;
+            }
+             form {
+                 display: inline-block;
+            }
+             body {
+                 text-align: center;
+            }
              .record {
-          padding: 14px 20px;
-          background-color: lightgreen;
+                 padding: 14px 20px;
+                 background-color: lightgreen;
+            }
+             .home {
+                 padding: 14px 20px;
+                 background-color: oldlace;
+                 position: absolute;
+                 bottom: 10px;
+                 left: 10px;
+            }
+             #logout{
+                 position: absolute;
+                 bottom: 10px;
+                 right: 10px;
+                 padding: 14px 20px;
+                 background-color: lightcoral;
+            }
+             body {
+                 background: #f8f8fd;
+                 color: #514B64;
+            }
 
-        }
-          .home {
-            padding: 14px 20px;
-          background-color: oldlace;
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          } html {
-            overflow: hidden;
-          }  #logout{
-            position: absolute;
-            bottom: 10px;
-            right: 10px;
-            padding: 14px 20px;
-            background-color: lightcoral;
-          }
-          body {
-  background: #f8f8fd;
-  color: #514B64;
-          }
         </style>
     </head>
 
     <body>
        <div class="navbar">
-          <img src='images/ouch.png' alt="Test" height="100" width="200"/>
+          <img src='images/ouch.png' alt="Test" height="80" width="160"/>
           <?php
           echo ("<h3>" . 'Username: ' . $seshUser . "</h3>");
           ?>
@@ -95,6 +93,8 @@ if (!isset($_SESSION["username"])) {
         <input type='text' name='severity' id='cause' placeholder='Severity of Injury'><br>
         <label for='symptoms'>Symptoms:</label>
         <input type='text' name='symptoms' id='symptoms' placeholder='Symptoms'><br>
+        <label for='date'>Date and Time:</label>
+        <input type='datetime-local' name='dateTime' id='dateTime' placeholder="Date and Time"><br>
         <label for='notes'>Any extra notes (optional)</label>
         <input type='text' name='notes' id='notes' placeholder='Notes'><br>
         <input name='action' type='submit' value='Record' class='record'>
@@ -108,7 +108,9 @@ if (!isset($_SESSION["username"])) {
 
       <?php
 
-
+      /**
+       *Record injury function, sends injury info to database
+       */
       function recordInjury() {
       global $DBInjuryTable;
         $error = 0;
@@ -118,19 +120,20 @@ if (!isset($_SESSION["username"])) {
         $cause = $_POST['cause'];
         $severity = $_POST['severity'];
         $symptoms = $_POST['symptoms'];
+        $dateTime = $_POST['dateTime'];
         $notes = $_POST['notes'];
 
         $seshUser = $_SESSION["username"];
 
-        if (empty($type) || empty($cause) || empty($severity) || empty($symptoms)) {
+        if (empty($type) || empty($cause) || empty($severity) || empty($symptoms) || empty($dateTime)) {
                     echo "You did not fill out the required fields.<br>";
                     $error = 1;
                 }
 
       if ($error == 0) {
 
-      query ("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity, txtNotes, dateTime)
-      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', '$notes', DATE_ADD(NOW(), INTERVAL 10 HOUR))");
+      query ("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity, dateTime,   txtNotes, currentTime)
+      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', '$dateTime', '$notes', NOW())");
 
 
       header("Location: viewInjury.php");
@@ -140,6 +143,7 @@ if (!isset($_SESSION["username"])) {
     if (isset($_POST['action'])) {
       $action = $_POST['action'];
 
+      //Switch statement
         switch ($action) {
           case 'Record':
             recordInjury();

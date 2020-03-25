@@ -25,53 +25,53 @@ if (!isset($_SESSION["username"])) {
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
         <style type="text/css">
-          table {
-            border: 1px solid black;
-          }
-            #home{
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          background-color: lightblue;
-          color: black;
-          } #logout{
+         table {
+              border: 1px solid black;
+            }
+              #home{
             position: absolute;
             bottom: 10px;
-            right: 10px;
+            left: 10px;
+            background-color: lightblue;
+            color: black;
+            } #logout{
+              position: absolute;
+              bottom: 10px;
+              right: 10px;
+              padding: 14px 20px;
+              background-color: lightcoral;
+              color: black;
+            } #record {
             padding: 14px 20px;
-            background-color: lightcoral;
-            color: black;
-          } #record {
-          padding: 14px 20px;
-          background-color: lightgreen;
-            color: black;
-        } .btn-circle {
-          width: 45px;
-          height: 45px;
-          line-height: 45px;
-          text-align: center;
-          padding: 0;
-          border-radius: 50%;
+            background-color: lightgreen;
+              color: black;
+          } .btn-circle {
+            width: 45px;
+            height: 45px;
+            line-height: 45px;
+            text-align: center;
+            padding: 0;
+            border-radius: 50%;
+            }
+          .btn-circle i {
+            position: relative;
+            top: -1px;
+          } .btn-circle-lg {
+            width: 100px;
+            height: 100px;
+            line-height: 55px;
+            font-size: 1.1rem;
           }
-        .btn-circle i {
-          position: relative;
-          top: -1px;
-        } .btn-circle-lg {
-          width: 100px;
-          height: 100px;
-          line-height: 55px;
-          font-size: 1.1rem;
-        }
-          .btn-circle-xl {
-          width: 120px;
-          height: 120px;
-          line-height: 20px;
-          font-size: 1.1rem;
-          } #user {
-            top: 5px;
-            right: 5px;
-          }
-                </style>
+            .btn-circle-xl {
+            width: 120px;
+            height: 120px;
+            line-height: 20px;
+            font-size: 1.1rem;
+            } #user {
+              top: 5px;
+              right: 5px;
+            }
+        </style>
     </head>
 
     <body>
@@ -102,7 +102,7 @@ if (!isset($_SESSION["username"])) {
       $rows = query("SELECT * FROM $DBInjuryTable WHERE txtUsername='$seshUser'");
 
       $table = '<table class="table">';
-      $table .= '<tr><th>Type</th><th>Cause</th><th>Symptoms</th><th>Severity</th><th>Notes</th><th>Date</th></tr>';
+      $table .= '<tr><th>Type</th><th>Cause</th><th>Symptoms</th><th>Severity</th><th>Date</th><th>Notes</th></tr>';
       foreach ($rows as &$row) {
 
         $table .= '<tr>' .
@@ -110,8 +110,8 @@ if (!isset($_SESSION["username"])) {
                      '<td>' . $row['txtInjuryCause'] . '</td>' .
                      '<td>' . $row['txtInjurySymptoms'] . '</td>' .
                      '<td>' . $row['txtInjurySeverity'] . '</td>' .
-                     '<td>' . $row['txtNotes'] . '</td>' .
                      '<td>' . $row['dateTime'] . '</td>' .
+                     '<td>' . $row['txtNotes'] . '</td>' .
                  '</tr>';
       }
       $table .=  '</table>';
@@ -123,7 +123,53 @@ if (!isset($_SESSION["username"])) {
 
 
         <script>
+          /**
+           *Quicksort function
+           * @param {number} - A, the array length
+           * @param {number} - lo, the lowest number
+           * @param {number} - hi, the highest number
+           * @returns {array} - Sorted array
+           */
+            function quicksort(A, lo, hi) {
+            if (lo == undefined) {
+                lo = 0;
+                }
+            if (hi == undefined) {
+              hi = A.length-1;
+            }
+            if (lo < hi) {
+              var p = partition(A, lo, hi);
+              quicksort(A, lo, p - 1);
+              quicksort(A, p + 1, hi);
+            }
+            return A;
+          }
 
+          /**
+           *Partition function
+           * @param {number} - A, the array length
+           * @param {number} - lo, the lowest number
+           * @param {number} - hi, the highest number
+           * @returns {array} - Sorted array
+           */
+          function partition(A, lo, hi) {
+            var pivot = A[hi];
+            var i = lo;
+            for (var j = lo; j < hi; j++) {
+              if (A[j] < pivot) {
+                //swap A[i] with A[j]
+                var temp = A[i];
+                  A[i] = A[j];
+                  A[j] = temp;
+                i = i + 1;
+              }
+            }
+            //swap A[i] with A[hi]
+              var temp = A[i];
+                  A[i] = A[hi];
+                  A[hi] = temp;
+            return i;
+          }
         </script>
     </body>
 </html>

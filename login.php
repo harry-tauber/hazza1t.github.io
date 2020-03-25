@@ -16,48 +16,46 @@ require 'common.php';
 
         <style type="text/css">
           input[type=text], input[type=password] {
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        } input[type=text]:focus, input[type=password]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
-
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
-        }
-
-          button:hover {
-          opacity:1;
+               padding: 15px;
+               margin: 5px 0 22px 0;
+               display: inline-block;
+               border: none;
+               background: #f1f1f1;
           }
-        .signup {
-          padding: 14px 20px;
-          background-color: lightcoral;
-          position: fixed;
-          bottom: 10px;
-          left: 10px;
-
-
-        }
-          .login {
-            padding: 14px 20px;
-          background-color: lightgreen;
-}
-          form {
-            display: inline-block;
+           input[type=text]:focus, input[type=password]:focus {
+               background-color: #ddd;
+               outline: none;
           }
-          body {
-            text-align: center;
-          } #ouch {
-            top: 5px;
-            left: 5px;
-}
+           hr {
+               border: 1px solid #f1f1f1;
+               margin-bottom: 25px;
+          }
+           button:hover {
+               opacity:1;
+          }
+           .signup {
+               padding: 14px 20px;
+               background-color: lightcoral;
+               position: fixed;
+               bottom: 10px;
+               left: 10px;
+          }
+           .login {
+               padding: 14px 20px;
+               background-color: lightgreen;
+          }
+           form {
+               display: inline-block;
+          }
+           body {
+               text-align: center;
+          }
+           #ouch {
+               top: 5px;
+               left: 5px;
+          }
 
-     </style>
+        </style>
     </head>
 
     <body>
@@ -82,8 +80,7 @@ require 'common.php';
       <?php
 
       /**
-       *
-       * @returns
+       *Login function, queries database
        */
       function doLogin() {
 
@@ -126,7 +123,9 @@ require 'common.php';
         } else die();
         }
 
-
+        /**
+         *Directs user to main interface
+         */
         function showMainPage() {
          header("Location: mainInter.php");
       }
@@ -135,7 +134,7 @@ require 'common.php';
 
       $action = $_POST['action'];
 
-      //Switch
+      //Switch statement
       switch ($action) {
         case 'Login':
             doLogin();

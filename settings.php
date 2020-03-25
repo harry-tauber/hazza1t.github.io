@@ -23,40 +23,44 @@ $seshUser = $_SESSION["username"];
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
         <style type="text/css">
           form {
-            display: inline-block;
+               display: inline-block;
           }
-          body {
-            text-align: center;
-          } html {
-            overflow: hidden;
-          } body {
-  background: #f8f8fd;
-  color: #514B64;
-          } #home {
-            padding: 14px 20px;
-          background-color: oldlace;
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          } input[type=password], input[type=email] {
-          padding: 15px;
-          margin: 5px 0 22px 0;
-          display: inline-block;
-          border: none;
-          background: #f1f1f1;
-        } input[type=email]:focus, input[type=password]:focus {
-          background-color: #ddd;
-          outline: none;
-        }
-
-        hr {
-          border: 1px solid #f1f1f1;
-          margin-bottom: 25px;
-        }
-
-          button:hover {
-          opacity:1;
+           body {
+               text-align: center;
           }
+           html {
+               overflow: hidden;
+          }
+           body {
+               background: #f8f8fd;
+               color: #514B64;
+          }
+           #home {
+               padding: 14px 20px;
+               background-color: oldlace;
+               position: absolute;
+               bottom: 10px;
+               left: 10px;
+          }
+           input[type=password], input[type=email] {
+               padding: 15px;
+               margin: 5px 0 22px 0;
+               display: inline-block;
+               border: none;
+               background: #f1f1f1;
+          }
+           input[type=email]:focus, input[type=password]:focus {
+               background-color: #ddd;
+               outline: none;
+          }
+           hr {
+               border: 1px solid #f1f1f1;
+               margin-bottom: 25px;
+          }
+           button:hover {
+               opacity:1;
+          }
+
         </style>
     </head>
 
@@ -69,10 +73,6 @@ $seshUser = $_SESSION["username"];
       </div>
       <div>
       <h1 class="page-header">Settings</h1>
-
-
-        <!--<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">Change Password</button><br>
-        <div id="demo" class="collapse">-->
 
           <!--Change password form-->
           <h5>Change Password</h5>
@@ -104,6 +104,9 @@ $seshUser = $_SESSION["username"];
 
       <?php
 
+      /**
+       *Change password function, queries and updates database
+       */
       function changePass() {
 
         global $DBUserTable;
@@ -152,7 +155,9 @@ $seshUser = $_SESSION["username"];
           } else die();
      }
 
-
+      /**
+       *Change email function, queries and updates database
+       */
       function changeEmail() {
            global $DBUserTable;
            global $seshUser;
@@ -193,6 +198,7 @@ $seshUser = $_SESSION["username"];
        if (isset($_POST['action'])) {
       $action = $_POST['action'];
 
+      //Switch statement
       switch ($action) {
         case 'Change Password':
         changePass();
