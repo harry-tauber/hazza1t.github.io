@@ -133,7 +133,7 @@ if (!isset($_SESSION["username"])) {
       if ($error == 0) {
 
       query ("INSERT INTO $DBInjuryTable (txtUsername, txtInjuryType, txtInjuryCause, txtInjurySymptoms, txtInjurySeverity, dateTime,   txtNotes, currentTime)
-      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', '$dateTime', '$notes', NOW())");
+      VALUES ('$seshUser', '$type', '$cause', '$severity', '$symptoms', '$dateTime', '$notes', 'DATE_ADD(NOW(), INTERVAL 10 HOUR)')");
 
 
       header("Location: viewInjury.php");

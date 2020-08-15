@@ -117,12 +117,70 @@ if (!isset($_SESSION["username"])) {
       $table .=  '</table>';
 
       echo $table;
+      
+      
+      
+          
+          /*$A = array("Shoulder", "Wrist", "Shoulder", "Shoulder", "Conusssion");
+          echo ($A[0]);*/
+          /**
+           *Quicksort function
+           * @param {number} - A, the array
+           * @param {number} - lo, the lowest number
+           * @param {number} - hi, the highest number
+           * @returns {array} - Sorted array
+           */
+      
+            /*function quicksort($A, $lo, $hi) {
+            if (!isset($lo)) {
+                $lo = 0;
+                }
+            if (!isset($hi)) {
+              $hi = strlen($A)-1;
+            }
+            if ($lo < $hi) {
+              $p = partition($A, $lo, $hi);
+              quicksort($A, $lo, $p - 1);
+              quicksort($A, $p + 1, $hi);
+            }
+            return $A;
+          }*/
+
+          
+
+          /**
+           *Partition function
+           * @param {number} - A, the array
+           * @param {number} - lo, the lowest number
+           * @param {number} - hi, the highest number
+           * @returns {array} - Sorted array
+           */
+          /*function partition($A, $lo, $hi) {
+            $pivot = A[hi];
+            $i = $lo;
+            for ($j = $lo; $j < $hi; $j++) {
+              if ($A[$j] < $pivot) {
+                //swap A[i] with A[j]
+                $temp = $A[$i];
+                  $A[$i] = $A[$j];
+                  $A[$j] = $temp;
+                $i = $i + 1;
+              }
+            }
+            //swap A[i] with A[hi]
+              $temp = $A[$i];
+                  $A[$i] = $A[$hi];
+                  $A[$hi] = $temp;
+            return $i;
+          }*/
+      
 
 
       ?>
 
 
         <script>
+          var A = ['Shoulder', 'Wrist', 'Shoulder', 'Shoulder', 'Conusssion'];
           /**
            *Quicksort function
            * @param {number} - A, the array length
@@ -143,7 +201,10 @@ if (!isset($_SESSION["username"])) {
               quicksort(A, p + 1, hi);
             }
             return A;
-          }
+          
+          console.log(quicksort([5,7,3,9]));
+          console.log(quicksort(['Shoulder', 'Wrist', 'Shoulder', 'Shoulder', 'Concussion', 'Arm']));
+          
 
           /**
            *Partition function
